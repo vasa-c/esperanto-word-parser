@@ -64,6 +64,16 @@ class Dict
     }
 
     /**
+     * Returns the list of roots
+     *
+     * @return array
+     */
+    public function listRoots()
+    {
+        return $this->roots;
+    }
+
+    /**
      * Create the list of short roots
      */
     private function createSRoots()

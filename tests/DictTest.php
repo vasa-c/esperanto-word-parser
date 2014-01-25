@@ -15,6 +15,7 @@ class DictTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers ::loadFromFile
      * @covers ::getRoot
+     * @covers ::listRoots
      */
     public function testGetRoot()
     {
@@ -27,6 +28,12 @@ class DictTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('abelo', $dict->getRoot('abel'));
         $this->assertSame('aludi', $dict->getRoot('alud'));
         $this->assertSame(null, $dict->getRoot('ama'));
+        $expected = [
+            'abelo' => 'bee',
+            'aludi' => 'refer',
+            'ambaux' => 'both',
+        ];
+        $this->assertEquals($expected, $dict->listRoots());
     }
 
     /**
