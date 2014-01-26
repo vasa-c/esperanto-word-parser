@@ -55,6 +55,18 @@ class Locale
         return $this->prefixes;
     }
 
+
+    /**
+     * @return \go\ewp\Suffixes
+     */
+    public function getSuffixes()
+    {
+        if (!$this->suffixes) {
+            $this->suffixes = new Suffixes($this->dir.'/suffixes.txt');
+        }
+        return $this->suffixes;
+    }
+
     /**
      * @var string
      */
@@ -74,4 +86,9 @@ class Locale
      * @var \go\ewp\Prefixes
      */
     private $prefixes;
+
+    /**
+     * @var \go\ewp\Suffixes
+     */
+    private $suffixes;
 }

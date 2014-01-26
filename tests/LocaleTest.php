@@ -28,5 +28,8 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
         $prefixes = $locale->getPrefixes();
         $this->assertInstanceOf('go\ewp\Prefixes', $prefixes);
         $this->assertEquals(['mal', 'ware'], $prefixes->find('malware'));
+        $suffixes = $locale->getSuffixes();
+        $this->assertInstanceOf('go\ewp\Suffixes', $suffixes);
+        $this->assertEquals(['fot', 'int'], $suffixes->find('fotint'));
     }
 }
