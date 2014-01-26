@@ -25,7 +25,7 @@ class Parts
             'remain' => $word,
             'part' => null,
         ];
-        $pattern = '^(.+?)(o|a|e|i|is|as|us|u)';
+        $pattern = '^(.+?)(o|a|e|i|is|as|os|us|u)';
         if ($ap) {
             $result->accus = false;
             $result->plural = false;

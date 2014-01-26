@@ -34,10 +34,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     public function providerParse()
     {
         return [
-            [
-                'la',
-                'la',
-            ],
+            ['', null],
+            ['d', null],
+            ['la', 'la'],
         ];
     }
 }

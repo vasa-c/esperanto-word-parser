@@ -31,11 +31,39 @@ class Parser
      */
     public function parse($word)
     {
+        $len = \strlen($word);
+        if ($len < 2) {
+            return null;
+        }
+        if (($len === 2) && ($word[1] === 'x')) {
+            return null;
+        }
         $dict = $this->locale->getDict();
-        $r = $dict->getRoot($word);
-        if ($r !== null) {
+        $part = Parts::define($word, true);
+        if (!\preg_match('/[aioeu]/', $part->remain)) {
+            $r = $dict->getRoot($part->remain.$part->part);
+            if ($r) {
+                $result = new Result;
+                $result->root = $part->remain.$part->part;
+                $result->accus = $part->accus;
+                $result->plural = $part->plural;
+                return $result;
+            }
+            $r = $dict->getRoot($word);
+            if ($r) {
+                $result = new Result;
+                $result->root = $word;
+                return $result;
+            }
+            return null;
+        }
+        $r = $dict->getRoot($part->remain);
+        if ($r) {
             $result = new Result;
-            $result->root = $word;
+            $result->root = $part->remain;
+            $result->part = $part->part;
+            $result->accus = $part->accus;
+            $result->plural = $part->plural;
             return $result;
         }
         return null;
