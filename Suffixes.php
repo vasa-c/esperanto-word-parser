@@ -38,7 +38,7 @@ class Suffixes
         foreach ($this->lens as $suffix => $len) {
             if (\substr($word, -$len) === $suffix) {
                 $w = \substr($word, 0, -$len);
-                if ($w) {
+                if (\strlen($w) > 1) {
                     return [$w, $suffix];
                 }
             }

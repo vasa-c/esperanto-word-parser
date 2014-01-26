@@ -11,6 +11,18 @@ namespace go\ewp;
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @return \go\ewp\Parser
+     */
+    private function getParser()
+    {
+        static $parser;
+        if (!$parser) {
+            $parser = \go\ewp\Locale::getSysLocale('ru')->getParser();
+        }
+        return $parser;
+    }
+
+    /**
      * @covers ::parse
      * @dataProvider providerParse
      * @param string $word
@@ -18,7 +30,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testParse($word, $expected)
     {
-        $parser = \go\ewp\Locale::getSysLocale('ru')->getParser();
+        $parser = $this->getParser();
         $result = $parser->parse($word);
         if ($expected === null) {
             $this->assertNull($result);
@@ -37,6 +49,23 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             ['', null],
             ['d', null],
             ['la', 'la'],
+            ['li', 'li'],
+            ['lin', 'li(n)'],
+            ['kaj', 'kaj'],
+            ['esti', 'est[i]'],
+            ['estis', 'est[is]'],
+            ['estas', 'est[as]'],
+            ['estos', 'est[os]'],
+            ['oni', 'oni'],
+            ['pri', 'pri'],
+            ['tamen', 'tamen'],
+            ['kuriero', 'kuri<er>[o]'],
+            ['malantaux', '(mal)antaux'],
+            ['ekmalfermigxis', '(ek)(mal)ferm<igx>[is]'],
+            ['dismetitaj', 'dismet<it>[a](j)'],
+            ['malrapide', '(mal)rapid[e]'],
+            ['denove', 'denov[e]'],
+            ['demonte', '(de)mont[e]'],
         ];
     }
 }

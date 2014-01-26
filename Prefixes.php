@@ -38,7 +38,7 @@ class Prefixes
         foreach ($this->lens as $prefix => $len) {
             if (\strpos($word, $prefix) === 0) {
                 $w = \substr($word, $len);
-                if ($w) {
+                if (\strlen($w) > 1) {
                     return [$prefix, $w];
                 }
             }
