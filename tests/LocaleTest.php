@@ -25,5 +25,8 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
         $phonetics = $locale->getPhonetics();
         $this->assertInstanceOf('go\ewp\Phonetics', $phonetics);
         $this->assertSame('абэло', $phonetics('abelo'));
+        $prefixes = $locale->getPrefixes();
+        $this->assertInstanceOf('go\ewp\Prefixes', $prefixes);
+        $this->assertEquals(['mal', 'ware'], $prefixes->find('malware'));
     }
 }

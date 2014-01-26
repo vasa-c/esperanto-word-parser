@@ -45,6 +45,17 @@ class Locale
     }
 
     /**
+     * @return \go\ewp\Prefixes
+     */
+    public function getPrefixes()
+    {
+        if (!$this->prefixes) {
+            $this->prefixes = new Prefixes($this->dir.'/prefixes.txt');
+        }
+        return $this->prefixes;
+    }
+
+    /**
      * @var string
      */
     private $dir;
@@ -58,4 +69,9 @@ class Locale
      * @var \go\ewp\Phonetics
      */
     private $phonetics;
+
+    /**
+     * @var \go\ewp\Prefixes
+     */
+    private $prefixes;
 }
