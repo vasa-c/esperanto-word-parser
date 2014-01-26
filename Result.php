@@ -14,7 +14,7 @@ class Result
 {
     public $root;
 
-    public $prefix;
+    public $prefixes = [];
 
     public $suffixes = [];
 
@@ -32,10 +32,7 @@ class Result
      */
     public function repr($sep = '-')
     {
-        $r = [];
-        if ($this->prefix !== null) {
-            $r[] = $this->prefix;
-        }
+        $r = $this->prefixes;
         $r[] = $this->root;
         $r = \array_merge($r, $this->suffixes);
         if ($this->part !== null) {
@@ -48,5 +45,34 @@ class Result
             $r[] = 'n';
         }
         return \implode($sep, $r);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        $r = '';
+        foreach ($this->prefixes as $prefix) {
+            $r .= '('.$prefix.')';
+        }
+        $r .= $this->root;
+        foreach ($this->suffixes as $suffix) {
+            $r .= '<'.$suffix.'>';
+        }
+        if ($this->part) {
+            $r .= '['.$this->part.']';
+        }
+        $end = '';
+        if ($this->plural) {
+            $end .= 'j';
+        }
+        if ($this->accus) {
+            $end .= 'n';
+        }
+        if ($end !== '') {
+            $r .= '('.$end.')';
+        }
+        return $r;
     }
 }
