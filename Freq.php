@@ -13,6 +13,18 @@ namespace go\ewp;
 class Freq
 {
     /**
+     * Constructor
+     *
+     * @param string $filename [optional]
+     */
+    public function __construct($filename = null)
+    {
+        if ($filename !== null) {
+            $this->appendFile($filename);
+        }
+    }
+
+    /**
      * Appends a content for parsing
      *
      * @param string $content
@@ -31,6 +43,7 @@ class Freq
             }
         }
         $this->count += \count($matches[0]);
+        \arsort($this->words);
     }
 
     /**
@@ -72,6 +85,41 @@ class Freq
     public function getCount()
     {
         return $this->count;
+    }
+
+    /**
+     * @param \go\ewp\Parser $parser
+     * @reutrn array
+     *         (success, fail, uniq, words, puniq, pwords, perunit, perwords)
+     */
+    public function passParser(Parser $parser)
+    {
+        $result = (object)[
+            'success' => [],
+            'fail' => [],
+            'uniq' => \count($this->words),
+            'words' => $this->count,
+            'pwords' => 0,
+            'puniq' => 0,
+            'peruniq' => 0,
+            'perwords' => 0,
+        ];
+        if (empty($this->words)) {
+            return $result;
+        }
+        foreach ($this->words as $word => $count) {
+            $r = $parser->parse($word);
+            if ($r !== null) {
+                $result->success[$word] = (string)$r;
+                $result->puniq++;
+                $result->pwords += $count;
+            } else {
+                $result->fail[] = $word;
+            }
+        }
+        $result->peruniq = (int)($result->puniq * 100 / $result->uniq);
+        $result->perwords = (int)($result->pwords * 100 / $result->words);
+        return $result;
     }
 
     /**

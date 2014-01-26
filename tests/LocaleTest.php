@@ -18,7 +18,7 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
      */
     public function testLocale()
     {
-        $locale = new Locale(__DIR__.'/../locals/ru/');
+        $locale = Locale::getSysLocale('ru');
         $dict = $locale->getDict();
         $this->assertInstanceOf('go\ewp\Dict', $dict);
         $this->assertSame('abelo', $dict->getRoot('abel'));

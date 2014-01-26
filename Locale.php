@@ -23,6 +23,26 @@ class Locale
     }
 
     /**
+     * @param string $lang
+     * @return \go\ewp\Locale
+     */
+    public static function getSysLocale($lang)
+    {
+        return new self(__DIR__.'/locals/'.$lang);
+    }
+
+    /**
+     * @return \go\ewp\Parser
+     */
+    public function getParser()
+    {
+        if (!$this->parser) {
+            $this->parser = new Parser($this);
+        }
+        return $this->parser;
+    }
+
+    /**
      * @return \go\ewp\Dict
      */
     public function getDict()
@@ -71,6 +91,11 @@ class Locale
      * @var string
      */
     private $dir;
+
+    /**
+     * @var \go\ewp\Parser
+     */
+    private $parser;
 
     /**
      * @var \go\ewp\Dict
