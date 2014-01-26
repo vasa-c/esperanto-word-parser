@@ -30,9 +30,9 @@ class Diacritic
         return \str_replace(self::$rls, self::$rlr, $text);
     }
 
-    private static $rds = ['Ĉ', 'Ĝ', 'Ĥ', 'Ĵ', 'Ŝ', 'Ŭ', 'ĉ', 'ĝ', 'ĥ', 'ĵ', 'ŝ', 'ŭ'];
+    private static $rds = ['Ĉ', 'Ĝ', 'Ĥ', 'Ĵ', 'Ŝ', 'Ŭ', 'ĉ', 'ĝ', 'ĥ', 'ĵ', 'ŝ', 'ŭ', 'U~', 'u~'];
 
-    private static $rdr = ['cx', 'gx', 'hx', 'jx', 'sx', 'ux', 'cx', 'gx', 'hx', 'jx', 'sx', 'ux'];
+    private static $rdr = ['cx', 'gx', 'hx', 'jx', 'sx', 'ux', 'cx', 'gx', 'hx', 'jx', 'sx', 'ux', 'Ux', 'ux'];
 
     private static $rls = ['cx', 'gx', 'hx', 'jx', 'sx', 'ux', 'u~'];
 

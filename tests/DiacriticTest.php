@@ -23,6 +23,7 @@ class DiacriticTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($latin, Diacritic::diacritic2latin($esper));
         $esperl = 'abcĉd efgĝh ĥijĵk lmnop rsŝtu ŭvzab cĉdef gĝhĥi jĵklm noprs ŝtuŭv z';
         $this->assertSame($esperl, Diacritic::latin2diacritic($latin));
+        $this->assertSame('auxs', Diacritic::diacritic2latin('au~s'));
         $this->assertSame('aŭs', Diacritic::latin2diacritic('au~s'));
     }
 }
