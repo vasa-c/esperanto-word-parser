@@ -172,5 +172,5 @@ class Parser
     /**
      * @var array
      */
-    private $eroots = ['oni'];
+    private $eroots = ['oni', 'kelkaj'];
 }

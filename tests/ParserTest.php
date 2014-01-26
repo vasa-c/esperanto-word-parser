@@ -66,6 +66,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             ['malrapide', '(mal)rapid[e]'],
             ['denove', 'denov[e]'],
             ['demonte', '(de)mont[e]'],
+            ['kelka', 'kelk[a]'],
+            ['kelkaj', 'kelkaj'],
+            ['pluraj', 'pluraj'],
         ];
     }
 }
